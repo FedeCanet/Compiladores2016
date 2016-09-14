@@ -1,6 +1,8 @@
 package parser;
 
 import examples.*;
+import examples.exps.*;
+import examples.stmts.*;
 import java.io.*;
 import java.util.*;
 import java_cup.runtime.Symbol;
@@ -91,10 +93,6 @@ stmt ::=
 		{: RESULT = new IfThen($2, $4); :}
 	|	PRINT:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
 		{: RESULT = new Print($3); :}
-	|	LENGTH:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
-		{: RESULT = new Length($3); :}
-	|	DEFINED:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
-		{: RESULT = new Defined($3); :}
 ;
 
 exp ::=
@@ -126,6 +124,10 @@ exp ::=
 		{: RESULT = $2; :}		
 	|	ID:$1 EQUALS_SIGN:$2 exp:$3 
 		{: RESULT = new Assignment($1, $3); :}
+	|	DEFINED:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
+		{: RESULT = new Defined($3); :}
+	|	LENGTH:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
+		{: RESULT = new Length($3); :}
 ;
 
 /*

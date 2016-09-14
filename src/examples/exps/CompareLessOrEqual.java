@@ -68,7 +68,7 @@ public class CompareLessOrEqual extends Exp {
 		if(tipo1 == Tipo.Numerico && tipo2 == Tipo.Numerico){
 			return Tipo.Booleano;
 		}else{
-			s.errores.add("Los operandos del CompareLessOrEqual son de tipos distintos " + tipo1 + " y " + tipo2);
+			s.errores.add("Los operandos del CompareLessOrEqual no son del tipo esperado, " + tipo1 + " y " + tipo2);
 			return Tipo.Booleano;//Asumimos que la comparación se puede hacer para continuar con el chequeo de tipos.
 		}
 	}

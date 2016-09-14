@@ -1,12 +1,11 @@
-package examples.stmts;
+package examples.exps;
 
 import semantica.CheckState;
 import semantica.State;
 import semantica.VarInfo.Tipo;
 import examples.Exp;
-import examples.Stmt;
 
-public class Length extends Stmt{
+public class Length extends Exp{
 	
 	private Exp expresion;
 	
@@ -39,26 +38,24 @@ public class Length extends Stmt{
 	}
 
 	@Override
-	public State evaluate(State state) throws Exception{
+	public Object evaluate(State state) throws Exception{
 		Object value = expresion.evaluate(state);
 		
 		if(value instanceof String)
-			System.out.println(((String) value).length());
+			return ((String) value).length();
 		else
-			System.out.println("Wrong type.");
-		
-		return state;
+			return "Wrong type.";
 	}
 
-	@Override
-	public CheckState check(CheckState s) throws Exception{
+	@Override public Tipo check(CheckState s){
 		//Obtenemos el tipo de la expresión.
 		Tipo typeExpresion = expresion.check(s);
 		
 		if(typeExpresion == Tipo.Cadena)
-			return s;
-		else
-			s.errores.add("El tipo del Lengh no es el esperado, este es " + typeExpresion);
-			return s;//Asumo que es Cadena.
+			return typeExpresion;
+		else{
+			s.errores.add(expresion.toString() + " not available for that Length() function.");
+			return Tipo.Cadena;
+		}
 	}
 }

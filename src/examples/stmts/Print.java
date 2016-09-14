@@ -46,8 +46,7 @@ public class Print extends Stmt{
 
 	@Override
 	public CheckState check(CheckState s) throws Exception {
-		//Obtenemos el tipo de la expresión.
-		Tipo typeExpresion = expresion.check(s);
+		System.out.println(expresion.check(s));
 		return s;
 	}
 

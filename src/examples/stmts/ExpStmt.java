@@ -52,7 +52,20 @@ public class ExpStmt extends Stmt {
 	@Override public CheckState check(CheckState s) throws Exception{
 		//Obtenemos el tipo de la asignación
 		Tipo assignType = assigment.check(s);
-		s.create(id, assignType, true);
+		
+		//Verificamos si la variable ya existe, de lo contrario la declaramos.
+		if(s.exsist(id)){
+			//Existe validamos que lo que vamos a asignar sea del mismo tipo que la variable.
+			if(s.getVarInfos(id).t == assignType){
+				//Es del mismo tipo entonces no hacemos nada.
+			}else{
+				//No es del mismo tipo, debemos continuar pero lanzando error.
+				s.errores.add("El tipo de la asignación no es del mismo tipo que la variable. Tipo Variable= " + s.getVarInfos(id).t + ", Tipo Asignación= " + assignType);
+			}
+		}else{
+			//No existe, la creamos.
+			s.create(id, assignType, true);
+		}		
 		return s;
 	}
 }

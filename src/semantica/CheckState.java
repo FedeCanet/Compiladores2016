@@ -1,6 +1,7 @@
 package semantica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,8 +38,13 @@ public class CheckState {
 		varInfos.put(var, new VarInfo(t, _inicializada));
 	}
 	
+	public boolean exsist(String id){
+		return varInfos.get(id) != null;
+	}
+	
 	public static CheckState intersect(final CheckState first, final CheckState second) {
 		CheckState result = new CheckState();
+		ArrayList<String> erroresResult = new ArrayList<String>();
 		for (String id : first.varInfos.keySet()) {
 			VarInfo firstEntry = first.varInfos.get(id);
 			VarInfo secondEntry = second.varInfos.get(id);
@@ -50,6 +56,15 @@ public class CheckState {
 				result.varInfos.put(id, firstEntry);
 			}
 		}
+		
+		//Agregamos los errores.
+		result.errores = first.errores;
+		for (String errorsSecond : second.errores) {
+			if(!result.errores.contains(errorsSecond)){
+				result.errores.add(errorsSecond);
+			}
+		}
+		
 		return result;
 	}
 	
@@ -77,8 +92,42 @@ public class CheckState {
 	
 	@Override
 	public String toString() {
-		return "CheckState [varInfos=" + varInfos + "]\r\n" + 
-				"Errores=" + printErrores();
+		int size = varInfos.size();
+		//Obtenemos las llaves.
+		String[] keys = varInfos.keySet().toArray(new String[size]);
+		//Ordenamos las claves.
+		Arrays.sort(keys);
+		//Construimos la salida
+		StringBuilder buffer = new StringBuilder("{ ");
+		if (size > 0) {
+			buffer.append(keys[0] + "=" + varInfos.get(keys[0]).t);
+			for (int i = 1; i < size; i++) {
+				buffer.append(", ").append(keys[i] + "=" + varInfos.get(keys[i]).t);
+			}
+		}
+		
+		buffer.append(" }");
+		buffer.append("\r\n");
+		buffer.append("Errores:");
+		buffer.append("\r\n");
+		return buffer.append(printErrores()).toString();
+	}
+		
+	public String printTipos() {
+		int size = varInfos.size();
+		//Obtenemos las llaves.
+		String[] keys = varInfos.keySet().toArray(new String[size]);
+		//Ordenamos las claves.
+		Arrays.sort(keys);
+		//Construimos la salida
+		StringBuilder buffer = new StringBuilder("{ ");
+		if (size > 0) {
+			buffer.append(keys[0] + "=" + varInfos.get(keys[0]).t);
+			for (int i = 1; i < size; i++) {
+				buffer.append(", ").append(keys[i] + "=" + varInfos.get(keys[i]).t);
+			}
+		}
+		return buffer.append(" }").toString();
 	}
 	
 	public String printErrores(){
