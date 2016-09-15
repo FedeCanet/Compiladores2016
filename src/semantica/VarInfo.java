@@ -6,7 +6,7 @@ public class VarInfo {
 		Cadena,
 		Numerico,
 		Booleano,
-		Integer
+		Entero
 	}
 	
 	//Variables

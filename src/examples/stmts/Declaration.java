@@ -39,15 +39,41 @@ public class Declaration extends Stmt{
 	}
 	@Override
 	public State evaluate(State state) throws Exception {
-		String a="lego";
-		if(a.equals("a"))
-			return null;
-		return null;
+		if(state.exsist(id)){
+			throw new Exception("La variable " + id + " ya esta declarada.");
+		}else{
+			if(exp != null){
+				Object value = exp.evaluate(state);
+				state.create(id, value);
+				return state;
+			}else{
+				state.create(id, null);
+				return state;
+			}			
+		}
 	}
 	@Override
 	public CheckState check(CheckState s) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(exp != null){
+			Tipo tipoDeLaExp = exp.check(s);
+		
+			if(s.exsist(id)){
+				if(s.getVarInfos(id).t == tipoDeLaExp){
+					return s;
+				}else{
+					s.errores.add("El tipo de la Asignación no es del mismo tipo que la variable.");
+				}
+			}else{
+				s.create(id, t, false);
+			}
+		}else{
+			if(s.exsist(id)){
+				s.errores.add("El tipo de la Asignación no es del mismo tipo que la variable.");
+			}else{
+				s.create(id, t, false);
+			}
+		}	
+		return s;
 	}
 
 }
