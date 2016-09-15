@@ -8,41 +8,45 @@ package parser;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int ELSE = 23;
-  public static final int SEMICOLON = 13;
-  public static final int ASTERISK = 8;
-  public static final int DEFINED = 28;
-  public static final int EQUALS_SIGN = 16;
-  public static final int THEN = 10;
-  public static final int WHILE = 22;
-  public static final int DOUBLE_EQUALS_SIGN = 25;
-  public static final int TRUE = 15;
-  public static final int IF = 24;
-  public static final int HYPHEN_MINUS = 12;
-  public static final int PLUS_SIGN = 11;
+  public static final int ELSE = 25;
+  public static final int SEMICOLON = 15;
+  public static final int ASTERISK = 10;
+  public static final int DEFINED = 30;
+  public static final int EQUALS_SIGN = 18;
+  public static final int INT = 5;
+  public static final int THEN = 12;
+  public static final int WHILE = 24;
+  public static final int DOUBLE_EQUALS_SIGN = 27;
+  public static final int TRUE = 17;
+  public static final int IF = 26;
+  public static final int HYPHEN_MINUS = 14;
+  public static final int PLUS_SIGN = 13;
   public static final int ID = 3;
   public static final int NUM = 2;
-  public static final int DO = 20;
-  public static final int LEFT_PARENTHESIS = 6;
-  public static final int RIGHT_PARENTHESIS = 7;
+  public static final int DO = 22;
+  public static final int LEFT_PARENTHESIS = 8;
+  public static final int RIGHT_PARENTHESIS = 9;
   public static final int EOF = 0;
-  public static final int DOUBLE_AMPERSAND = 18;
-  public static final int LENGTH = 27;
-  public static final int FALSE = 9;
-  public static final int PRINT = 26;
+  public static final int DOUBLE_AMPERSAND = 20;
+  public static final int LENGTH = 29;
+  public static final int FALSE = 11;
+  public static final int PRINT = 28;
   public static final int error = 1;
-  public static final int EXCLAMATION_MARK = 5;
+  public static final int EXCLAMATION_MARK = 7;
   public static final int STR = 4;
-  public static final int LESS_THAN_OR_EQUAL = 19;
-  public static final int RIGHT_CURLY_BRACKET = 17;
-  public static final int LEFT_CURLY_BRACKET = 14;
-  public static final int SKIP = 21;
+  public static final int LESS_THAN_OR_EQUAL = 21;
+  public static final int RIGHT_CURLY_BRACKET = 19;
+  public static final int BOOL = 6;
+  public static final int LEFT_CURLY_BRACKET = 16;
+  public static final int SKIP = 23;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "NUM",
   "ID",
   "STR",
+  "INT",
+  "BOOL",
   "EXCLAMATION_MARK",
   "LEFT_PARENTHESIS",
   "RIGHT_PARENTHESIS",

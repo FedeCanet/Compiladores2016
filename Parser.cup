@@ -3,6 +3,7 @@ package parser;
 import examples.*;
 import examples.exps.*;
 import examples.stmts.*;
+import semantica.VarInfo.Tipo;
 import java.io.*;
 import java.util.*;
 import java_cup.runtime.Symbol;
@@ -35,9 +36,12 @@ non terminal Stmt stmt;
 //non terminal AExp aexp;
 //non terminal BExp bexp;
 non terminal Exp exp;
+non terminal Tipo tipo;
 terminal Double NUM;
 terminal String ID;
 terminal String STR;		//NUEVO
+terminal Integer INT;
+terminal Boolean BOOL;
 terminal EXCLAMATION_MARK;
 terminal LEFT_PARENTHESIS;
 terminal RIGHT_PARENTHESIS;
@@ -77,9 +81,11 @@ precedence left DOUBLE_EQUALS_SIGN;
 start with stmt;
 
 stmt ::=
-//		ID:$1 EQUALS_SIGN:$2 aexp:$3 SEMICOLON:$4
-		ID:$1 EQUALS_SIGN:$2 exp:$3 SEMICOLON:$4 
-		//{: RESULT = new Assignment($1, $3); :}
+		tipo:$1 ID:$2 SEMICOLON:$3
+		{: RESULT = new Declaration($1,$2, null); :}
+	|	tipo:$1 ID:$2 EQUALS_SIGN:$3 exp:$4 SEMICOLON:$5
+		{: RESULT = new Declaration($1,$2,$4); :}
+	|	ID:$1 EQUALS_SIGN:$2 exp:$3 SEMICOLON:$4 
 		{: RESULT = new ExpStmt($1,$3); :}
 	|	SKIP:$1 SEMICOLON:$2 
 		{: RESULT = new Sequence(new Stmt[0]); :}
@@ -128,6 +134,17 @@ exp ::=
 		{: RESULT = new Defined($3); :}
 	|	LENGTH:$1 LEFT_PARENTHESIS:$2 exp:$3 RIGHT_PARENTHESIS:$4
 		{: RESULT = new Length($3); :}
+;
+
+tipo ::=
+		NUM:$1
+		{: RESULT = Tipo.Numerico; :}
+	|	INT
+		{: RESULT = Tipo.Integer; :}
+	|	STR
+		{: RESULT = Tipo.Cadena; :}
+	|	BOOL
+		{: RESULT = Tipo.Booleano; :}
 ;
 
 /*

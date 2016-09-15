@@ -5,7 +5,8 @@ public class VarInfo {
 	public enum Tipo{
 		Cadena,
 		Numerico,
-		Booleano
+		Booleano,
+		Integer
 	}
 	
 	//Variables
