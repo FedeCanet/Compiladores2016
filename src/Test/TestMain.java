@@ -3,9 +3,9 @@ package Test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import examples.Stmt;
 import parser.parser;
 import semantica.State;
-import examples.Stmt;
 
 public class TestMain {
 
@@ -14,13 +14,13 @@ public class TestMain {
 	@Test
 	public void test() {
 		
-		// Caso 1 - Asignación:
+		// Caso 1 - Asignaciï¿½n:
 		String [] lines = {"x = 1;"};
 		State state = new State();
 		state.create("x", 1.0);
 		chequearComparacion(lines, state);	
 		
-		// Caso 2 - Multiplicación:
+		// Caso 2 - Multiplicaciï¿½n:
 		lines[0] = "x = 2*2;";
 		state = new State();
 		state.create("x", 4.0);
@@ -38,14 +38,14 @@ public class TestMain {
 		state.create("x", 5.0);
 		chequearComparacion(lines, state);	
 		
-		// CASO 5 - Asignación de expresiones y Suma:
+		// CASO 5 - Asignaciï¿½n de expresiones y Suma:
 		lines[0] = "x = 1 + y = 2;";
 		state = new State();
 		state.create("x", 3.0);
 		state.create("y", 2.0);
 		chequearComparacion(lines, state);
 		
-		// CASO 6 - Asignación de expresion booleana
+		// CASO 6 - Asignaciï¿½n de expresion booleana
 		lines[0] = "var = true;";
 		state = new State();
 		state.create("var", true);
@@ -105,8 +105,8 @@ public class TestMain {
 	}
 	
 	/**
-	 * Método, recibe una entrada y un estado, verifica que la entrada genere el mismo estado
-	 * recibido por parámetro.
+	 * Mï¿½todo, recibe una entrada y un estado, verifica que la entrada genere el mismo estado
+	 * recibido por parï¿½metro.
 	 * @param line
 	 * @param stateEsperado
 	 */	

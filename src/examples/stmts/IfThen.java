@@ -58,18 +58,18 @@ public class IfThen extends Stmt {
 	}
 
 	@Override public CheckState check(CheckState s) throws Exception{
-		//Obtenemos el tipo de la condición.
+		//Obtenemos el tipo de la condicion.
 		Tipo tipoCondicion = condition.check(s);
 		
-		//Evaluamos la condición.
+		//Evaluamos la condicion.
 		if(tipoCondicion != Tipo.Booleano){
-			s.errores.add("La condición del IfThen no es del tipo esperado, " + tipoCondicion);
+			s.errores.add("La condicion del IfThen no es del tipo esperado, " + tipoCondicion);
 		}
 		
 		//Obtenemos una copia del estado original.
 		CheckState copyState = (CheckState)s.clone();
 		
-		//Retornamos la intersección entre el estado Actual y el estado 
+		//Retornamos la interseccion entre el estado Actual y el estado 
 		//modificado por el cuerpo del IfThen.
 		return s.intersectWith(thenBody.check(copyState));
 	}	

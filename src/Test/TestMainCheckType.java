@@ -20,13 +20,13 @@ public class TestMainCheckType {
 		 * CASOS SIN ERROR PARA CHEQUEAR LOS TIPOS.
 		 */
 		
-		// Caso 1 - Asignación:
+		// Caso 1 - Asignaciï¿½n:
 		String [] lines = {"x = 1;"};
 		CheckState state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		chequearComparacion(lines, state);	
 		
-		// Caso 2 - Multiplicación:
+		// Caso 2 - Multiplicaciï¿½n:
 		lines[0] = "x = 2*2;";
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
@@ -44,14 +44,14 @@ public class TestMainCheckType {
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		chequearComparacion(lines, state);	
 		
-		// CASO 5 - Asignación de expresiones y Suma:
+		// CASO 5 - Asignaciï¿½n de expresiones y Suma:
 		lines[0] = "x = 1 + y = 2;";
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
 		chequearComparacion(lines, state);
 		
-		// CASO 6 - Asignación de expresion booleana
+		// CASO 6 - Asignacion de expresion booleana
 		lines[0] = "var = true;";
 		state = new CheckState();
 		state.create("var", new VarInfo(Tipo.Booleano, true));
@@ -61,7 +61,7 @@ public class TestMainCheckType {
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
-		//el z no va porque se declara en el cuerpo del if y al hacer intersección no se obtiene.
+		//el z no va porque se declara en el cuerpo del if y al hacer interseccion no se obtiene.
 		lines = new String[3];
 		lines[0] = "x=1;"; lines[1]="y=1;"; lines[2]="if(x==y)then z=1;";
 		chequearComparacion(lines, state);
@@ -70,7 +70,7 @@ public class TestMainCheckType {
 		state = new CheckState();
 		state.create("var1", new VarInfo(Tipo.Booleano, true));
 		state.create("var2", new VarInfo(Tipo.Booleano, true));
-		//el z no va porque se declara en el cuerpo del if y al hacer intersección no se obtiene.
+		//el z no va porque se declara en el cuerpo del if y al hacer interseccion no se obtiene.
 		lines = new String[3];
 		lines[0] = "var1=true;"; lines[1]="var2=true;"; lines[2]="if(var1&&var2)then z=4;";
 		chequearComparacion(lines, state);
@@ -79,7 +79,7 @@ public class TestMainCheckType {
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
-		//el z no va porque se declara en el cuerpo del if y al hacer intersección no se obtiene.
+		//el z no va porque se declara en el cuerpo del if y al hacer interseccion no se obtiene.
 		lines = new String[3];
 		lines[0] = "x=1;"; lines[1]="y=2;"; lines[2]="if(x<=y)then z=1;";
 		chequearComparacion(lines, state);
@@ -88,7 +88,7 @@ public class TestMainCheckType {
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
-		//el z no va porque se declara en el cuerpo del if y al hacer intersección no se obtiene.
+		//el z no va porque se declara en el cuerpo del if y al hacer interseccion no se obtiene.
 		lines = new String[3];
 		lines[0] = "x=2;"; lines[1]="y=1;"; lines[2]="if(x<=y)then z=1; else z=2;";
 		chequearComparacion(lines, state);
@@ -96,7 +96,7 @@ public class TestMainCheckType {
 		// Caso 11 - Negation with ifThenElse
 		state = new CheckState();
 		state.create("var", new VarInfo(Tipo.Booleano, true));
-		//el x no va porque se declara en el cuerpo del if y al hacer intersección no se obtiene.
+		//el x no va porque se declara en el cuerpo del if y al hacer intersecciï¿½n no se obtiene.
 		lines = new String[2];
 		lines[0] = "var=true;"; lines[1]="if(!var)then x=1; else x=2;";
 		chequearComparacion(lines, state);
@@ -109,11 +109,11 @@ public class TestMainCheckType {
 		lines[0] = "x=1;"; lines[1]="y=10;"; lines[2]="while(x<=y)do x=x+1;";
 		chequearComparacion(lines, state);
 		
-		//Caso 13 - While-Do con declaración dentro del bucle.
+		//Caso 13 - While-Do con declaraciï¿½n dentro del bucle.
 		state = new CheckState();
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
-		//el z no va porque se declara dentro del cuerpo del While, al hacer la intersección no se obtiene.
+		//el z no va porque se declara dentro del cuerpo del While, al hacer la intersecciï¿½n no se obtiene.
 		lines = new String[3];
 		lines[0] = "x=1;"; lines[1]="y=10;"; lines[2]="while(x<=y)do z=x+y;";
 		chequearComparacion(lines, state);
@@ -124,7 +124,7 @@ public class TestMainCheckType {
 		
 		// Caso 14 - Con Errores:
 		state = new CheckState();
-		//Asumimos que es númerico, debe pasar el test pero imprimir error.
+		//Asumimos que es nï¿½merico, debe pasar el test pero imprimir error.
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		lines = new String[2];
 		lines[0] = "x=true*2;"; lines[1]="x=1+false;";
@@ -132,7 +132,7 @@ public class TestMainCheckType {
 		
 		// Caso 15 - Con Errores:
 		state = new CheckState();
-		//Asumimos que es númerico, debe pasar el test pero imprimir error.
+		//Asumimos que es nï¿½merico, debe pasar el test pero imprimir error.
 		state.create("x", new VarInfo(Tipo.Numerico, true));
 		state.create("y", new VarInfo(Tipo.Numerico, true));
 		lines = new String[2];
@@ -194,8 +194,8 @@ public class TestMainCheckType {
 	}
 	
 	/**
-	 * Método, recibe una entrada y un estado, verifica que la entrada genere el mismo estado
-	 * recibido por parámetro.
+	 * Mï¿½todo, recibe una entrada y un estado, verifica que la entrada genere el mismo estado
+	 * recibido por parï¿½metro.
 	 * @param line
 	 * @param stateEsperado
 	 */	

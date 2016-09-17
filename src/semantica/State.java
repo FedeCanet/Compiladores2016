@@ -2,7 +2,7 @@ package semantica;
 
 import java.util.*;
 
-/** Representación de los estados de las variables.
+/** Representacion de los estados de las variables.
 */
 public class State {
 	
