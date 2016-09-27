@@ -51,6 +51,10 @@ public class Addition extends Exp {
 		Object value1 = left.evaluate(state);
 		Object value2 = right.evaluate(state);
 		
+		if (value1 instanceof Integer && value2 instanceof Integer)  {
+			return (Integer)value1 + (Integer)value2;	
+		}
+		
 		if (value1 instanceof Double && value2 instanceof Double)  {
 			return (Double)value1 + (Double)value2;	
 		}
