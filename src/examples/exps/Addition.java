@@ -59,7 +59,7 @@ public class Addition extends Exp {
 			return (Double)value1 + (Double)value2;	
 		}
 		//Si la suma no se puede hacer se lanza un msj de error.
-		return lanzarError("La evaluación de la Addition no se puede hacer debido a que los operandos no son del tipo requerido, estos son " + value1 + " y " + value2);
+		return lanzarError("La evaluacion de la Addition no se puede hacer debido a que los operandos no son del tipo requerido, estos son " + value1 + " y " + value2);
 	}
 	
 	@Override public Tipo check(CheckState s){		
@@ -67,12 +67,12 @@ public class Addition extends Exp {
 		Tipo tipoLeft = left.check(s);
 		Tipo tipoRight = right.check(s);
 		
-		//La suma se realiza solamente si los tipos son númericos.
+		//La suma se realiza solamente si los tipos son nï¿½mericos.
 		if(tipoLeft == Tipo.Numerico && tipoRight == Tipo.Numerico){
 			return tipoLeft;
 		}else{
 			s.errores.add("Los operandos de la suma son de tipos distintos " + tipoLeft + " y " + tipoRight);
-			return Tipo.Numerico;//Asumimos el tipo númerico para que pueda continuar con el chequeo de tipos.
+			return Tipo.Numerico;//Asumimos el tipo numerico para que pueda continuar con el chequeo de tipos.
 		}
 	}
 }
