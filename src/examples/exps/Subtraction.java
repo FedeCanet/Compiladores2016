@@ -63,8 +63,10 @@ public class Subtraction extends Exp {
 		Tipo tipo1 = left.check(s);
 		Tipo tipo2 = right.check(s);
 		
-		if(tipo1 == Tipo.Numerico && tipo2 == Tipo.Numerico){
-			return tipo1;
+		if(tipo1 == Tipo.Entero && tipo2 == Tipo.Entero){
+			return Tipo.Entero;
+		}else if(Tipo.Numerico.isComatible(tipo1) && Tipo.Numerico.isComatible(tipo2)){
+			return Tipo.Numerico;
 		}else{
 			s.errores.add("Los operandos de la substracción son de tipos distintos " + tipo1 + " y " + tipo2);
 			return Tipo.Numerico;//Asumimos para poder continuar con el chequeo de tipos.

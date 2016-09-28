@@ -67,7 +67,6 @@ public class Addition extends Exp {
 		Tipo tipoLeft = left.check(s);
 		Tipo tipoRight = right.check(s);
 				
-		//La suma se realiza solamente si los tipos son n�mericos.
 		if(tipoLeft == Tipo.Entero && tipoRight == Tipo.Entero){
 			return Tipo.Entero;
 		}else if(Tipo.Numerico.isComatible(tipoLeft) && Tipo.Numerico.isComatible(tipoRight)){

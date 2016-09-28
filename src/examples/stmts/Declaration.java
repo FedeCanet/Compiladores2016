@@ -56,15 +56,21 @@ public class Declaration extends Stmt{
 	public CheckState check(CheckState s) throws Exception {
 		if(exp != null){
 			Tipo tipoDeLaExp = exp.check(s);
-		
+			//Verificamos que ya no exista la variable.
 			if(s.exsist(id)){
-				if(s.getVarInfos(id).t == tipoDeLaExp){
-					return s;
-				}else{
-					s.errores.add("El tipo de la Asignación no es del mismo tipo que la variable.");
+				//Estamos en Declaration, entonce hay ejemplo int algo.. num algo... si la variable existe hay que mandar msj de error
+				s.errores.add("La variable " + id + " ya esta definida");
+				
+				//Verificamos que lo que el valor que se le asigna sea del mismo tipo.
+				if(!t.isComatible(tipoDeLaExp)){
+					s.errores.add("El tipo de la asignación " + tipoDeLaExp + " no se puede asignar a la variable " + id + " del tipo " + t);
 				}
+				
+				return s;
 			}else{
+				//No existe, la creamos.
 				s.create(id, t, false);
+				//Verificamos que lo que el valor que se le asigna sea del mismo tipo.
 				if(!t.isComatible(tipoDeLaExp)){
 					s.errores.add("El tipo de la asignación " + tipoDeLaExp + " no se puede asignar a la variable " + id + " del tipo " + t);
 				}
