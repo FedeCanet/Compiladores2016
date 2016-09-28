@@ -99,7 +99,7 @@ import java.io.*;
 [0-9]+
 	{ String $1 = yytext(); Integer $0 = Integer.parseInt($1);
 	  return new Symbol(INT, yyline, yycolumn, $0); }
-[0-9]+\.[0-9]+
+[0-9]*\.[0-9]+
 	{ String $1 = yytext(); Double $0 = Double.parseDouble($1);
 	  return new Symbol(NUM, yyline, yycolumn, $0); }
 [a-zA-Z_][a-zA-Z0-9_]*

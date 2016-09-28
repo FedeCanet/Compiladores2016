@@ -65,6 +65,9 @@ public class Declaration extends Stmt{
 				}
 			}else{
 				s.create(id, t, false);
+				if(!t.isComatible(tipoDeLaExp)){
+					s.errores.add("El tipo de la asignación " + tipoDeLaExp + " no se puede asignar a la variable " + id + " del tipo " + t);
+				}
 			}
 		}else{
 			if(s.exsist(id)){

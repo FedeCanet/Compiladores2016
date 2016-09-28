@@ -66,12 +66,14 @@ public class Addition extends Exp {
 		//Obtenemos los tipos de left y right.
 		Tipo tipoLeft = left.check(s);
 		Tipo tipoRight = right.check(s);
-		
+				
 		//La suma se realiza solamente si los tipos son n�mericos.
-		if(tipoLeft == Tipo.Numerico && tipoRight == Tipo.Numerico){
-			return tipoLeft;
+		if(tipoLeft == Tipo.Entero && tipoRight == Tipo.Entero){
+			return Tipo.Entero;
+		}else if(Tipo.Numerico.isComatible(tipoLeft) && Tipo.Numerico.isComatible(tipoRight)){
+			return Tipo.Numerico;
 		}else{
-			s.errores.add("Los operandos de la suma son de tipos distintos " + tipoLeft + " y " + tipoRight);
+			s.errores.add("Los operandos de la suma no son compatibles " + tipoLeft + " y " + tipoRight);
 			return Tipo.Numerico;//Asumimos el tipo numerico para que pueda continuar con el chequeo de tipos.
 		}
 	}

@@ -6,7 +6,18 @@ public class VarInfo {
 		Cadena,
 		Numerico,
 		Booleano,
-		Entero
+		Entero;
+		
+		public boolean isComatible(Tipo t1){
+			if(this.equals(Entero) && t1.equals(Entero))
+				return true;
+			else if(this.equals(Numerico) && t1.equals(Entero))
+					return true;
+			else if(this.equals(Numerico) && t1.equals(Numerico))
+				return true;
+			else 
+				return false;			
+		}		
 	}
 	
 	//Variables
@@ -18,6 +29,10 @@ public class VarInfo {
 		inicializado = _inicializado;
 	}
 
+	public boolean esCompatible(Tipo t){
+		return false;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

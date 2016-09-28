@@ -42,8 +42,7 @@ public class NumEntero extends Exp{
 
 	@Override
 	public Tipo check(CheckState s) {
-		// TODO Auto-generated method stub
-		return null;
+		return Tipo.Entero;
 	}
 
 }
