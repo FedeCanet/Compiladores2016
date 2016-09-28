@@ -77,7 +77,7 @@ public class Declaration extends Stmt{
 			}
 		}else{
 			if(s.exsist(id)){
-				s.errores.add("El tipo de la Asignación no es del mismo tipo que la variable.");
+				s.errores.add("La variable " + id + " ya está declarada.");
 			}else{
 				s.create(id, t, false);
 			}

@@ -63,8 +63,12 @@ public class ExpStmt extends Stmt {
 				s.errores.add("El tipo de la asignación no es del mismo tipo que la variable. Tipo Variable= " + s.getVarInfos(id).t + ", Tipo Asignación= " + assignType);
 			}
 		}else{
-			//No existe, la creamos.
-			s.create(id, assignType, true);
+			//No existe y no tiene tipo especificado, entonces lanzamos msj de error y seguimos.
+			s.errores.add("El tipo de la variable " + id + " no está especificado.");
+			if(!Tipo.Numerico.isComatible(assignType)){
+				s.errores.add("El ipo de la asignación " + assignType + " no es del mismo tipo que la variable " + Tipo.Numerico.toString());
+			}
+			s.create(id, Tipo.Numerico, true);
 		}		
 		return s;
 	}
